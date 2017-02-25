@@ -54,9 +54,7 @@ end
 Now you should be able to start the app in a terminal with:
 
     mix deps.get
-    mix web
-
-*The `mix web` task saves you from typing the longer `mix run --no-halt`.*
+    mix run --no-halt
 
 It outputs the URL at which the server runs. Go there and marvel!
 
