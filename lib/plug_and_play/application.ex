@@ -9,7 +9,7 @@ defmodule PlugAndPlay.Application do
         port = String.to_integer(System.get_env("PORT") || "8080")
 
         children = [
-          Plug.Adapters.Cowboy.child_spec(:http, router, [], port: port),
+          Plug.Adapters.Cowboy.child_spec(:http, unquote(router), [], port: port),
         ]
 
         {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
