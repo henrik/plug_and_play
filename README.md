@@ -58,7 +58,7 @@ Now you should be able to start the app in a terminal with:
 
 *(This saves you from typing `mix run --no-halt`.)*
 
-It outputs the URL at which the server runs. Go there and marvel!
+It outputs the URL at which the server runs - usually <http://0.0.0.0:8080>. Go there and marvel!
 
 
 ## Port number
