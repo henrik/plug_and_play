@@ -18,7 +18,7 @@ Open `mix.exs` and add `plug_and_play` to your list of dependencies:
 ```elixir
 def deps do
   [
-    {:plug_and_play, "~> 0.1.0"},
+    {:plug_and_play, "~> 0.2.0"},
   ]
 end
 ```
@@ -54,7 +54,9 @@ end
 Now you should be able to start the app in a terminal with:
 
     mix deps.get
-    mix run --no-halt
+    mix server
+
+*(This saves you from typing `mix run --no-halt`.)*
 
 It outputs the URL at which the server runs. Go there and marvel!
 
@@ -67,7 +69,7 @@ This is the convention on e.g. [Heroku](https://heroku.com) and with [Dokku](htt
 
 The default is port 8080. To run on another port in development:
 
-    PORT=8181 mix run --no-halt
+    PORT=8181 mix server
 
 
 ## Credits and license
