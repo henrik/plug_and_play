@@ -9,7 +9,7 @@ Later, if you need more control, you can easily replace `PlugAndPlay` piece by p
 
 ## Setting up a Plug app, the easy way
 
-Generate a new project with `--sup` (to get a supervisor tree and an application callback), e.g.
+Generate a new project with `--sup`, e.g.
 
     mix new hello_world --sup
 
