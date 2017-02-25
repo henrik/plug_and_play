@@ -4,14 +4,9 @@ defmodule PlugAndPlay.Application do
 
     quote do
       use Application
-      import Supervisor.Spec
 
       def start(_type, _args) do
-        children = [
-          supervisor(PlugAndPlay.Supervisor, [unquote(router)]),
-        ]
-
-        Supervisor.start_link(children, strategy: :one_for_one)
+        PlugAndPlay.Supervisor.start_link(unquote(router))
       end
     end
   end
