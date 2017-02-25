@@ -23,7 +23,7 @@ def deps do
 end
 ```
 
-*(This saves you from manually adding Plug and the [Cowboy](https://github.com/ninenines/cowboy) web server to the deps list.)*
+*(This makes `PlugAndPlay` conveniences available and saves you from manually adding Plug and the [Cowboy](https://github.com/ninenines/cowboy) web server to the deps list.)*
 
 Make your main application (e.g. `lib/hello_world/application.ex`) look something like:
 
