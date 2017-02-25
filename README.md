@@ -1,18 +1,61 @@
 # PlugAndPlay
 
-**TODO: Add description**
+Set up a `Plug` application with less boilerplate.
 
-## Installation
+`PlugAndPlay` is not a web framework – it's a scaffold. You use `Plug` as you would normally, only *sooner*.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `plug_and_play` to your list of dependencies in `mix.exs`:
+Later, if you need more control, you can easily replace `PlugAndPlay` piece by piece or wholesale.
+
+
+## Setting up a Plug app, the easy way
+
+Generate a new project with `--sup` (to get a supervisor tree and an application callback), e.g.
+
+    mix new hello_world --sup
+
+Open `mix.exs` and add `plug_and_play` to your list of dependencies:
 
 ```elixir
 def deps do
-  [{:plug_and_play, "~> 0.1.0"}]
+  [
+    {:plug_and_play, "~> 0.1.0"},
+  ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/plug_and_play](https://hexdocs.pm/plug_and_play).
+*This makes `PlugAndPlay` conveniences available and saves you from manually depending on the [Cowboy](https://github.com/ninenines/cowboy) web server.)*
+
+Make your main application (e.g. `lib/hello_world/application.ex`) look something like:
+
+```elixir
+defmodule HelloWorld.Application do
+  use PlugAndPlay.Application
+end
+```
+
+*This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port.*
+
+Make your main application (e.g. `lib/hello_world.ex`) look something like:
+
+```elixir
+defmodule HelloWorld do
+  defmodule Router do
+    use PlugAndPlay.Router
+
+    get "/" do
+      send_resp conn, 200, "Hello world!"
+    end
+  end
+end
+```
+
+*This saves you from manually including some `Plug.Router` boilerplate.*
+
+Now you should be able to start the app in a terminal with:
+
+    mix deps.get
+    mix web
+
+*The `mix web` task saves you from typing the longer `mix run --no-halt`.*
+
+It outputs the URL at which the server runs. Go there and marvel!
