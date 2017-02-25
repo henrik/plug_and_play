@@ -8,6 +8,8 @@ defmodule PlugAndPlay.Mixfile do
        elixir: "~> 1.4",
        build_embedded: Mix.env == :prod,
        start_permanent: Mix.env == :prod,
+       description: description(),
+       package: package(),
        deps: deps(),
      ]
   end
@@ -21,6 +23,27 @@ defmodule PlugAndPlay.Mixfile do
       extra_applications: [
         :logger,
       ],
+    ]
+  end
+
+  defp description do
+    """
+    Set up a `Plug` application with less boilerplate.
+
+    `PlugAndPlay` is not a web framework – it's a scaffold. You use `Plug` as you would normally, only *sooner*.
+
+    Later, if you need more control, you can easily replace `PlugAndPlay` piece by piece or wholesale.
+    """
+  end
+
+  defp package do
+    [
+      name: :plug_and_play,
+      maintainers: ["Henrik Nyh"],
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/henrik/plug_and_play",
+      },
     ]
   end
 
