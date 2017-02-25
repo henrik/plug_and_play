@@ -29,11 +29,11 @@ Make your main application (e.g. `lib/hello_world/application.ex`) look somethin
 
 ```elixir
 defmodule HelloWorld.Application do
-  use PlugAndPlay.Application
+  use PlugAndPlay.Application, router: HelloWorld.Router
 end
 ```
 
-*This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port.*
+*This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port. It will use `PORT` if that environment variable is set (it is automatically on Heroku) or else fall back to 8080.*
 
 Make your main application (e.g. `lib/hello_world.ex`) look something like:
 
@@ -59,3 +59,8 @@ Now you should be able to start the app in a terminal with:
 *The `mix web` task saves you from typing the longer `mix run --no-halt`.*
 
 It outputs the URL at which the server runs. Go there and marvel!
+
+
+## Credits and license
+
+By [Henrik Nyh](https://henrik.nyh.se) 2017-02-25 under the MIT License.
