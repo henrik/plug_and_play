@@ -30,7 +30,7 @@ defmodule PlugAndPlay.Mixfile do
     """
     Set up a `Plug` application with less boilerplate.
 
-    `PlugAndPlay` is not a web framework – it's a scaffold. You use `Plug` as you would normally, only *sooner*.
+    `PlugAndPlay` is not a web framework – it's a small scaffold. You use `Plug` as you would normally, only *sooner*.
 
     Later, if you need more control, you can easily replace `PlugAndPlay` piece by piece or wholesale.
     """
