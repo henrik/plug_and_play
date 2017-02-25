@@ -33,7 +33,7 @@ defmodule HelloWorld.Application do
 end
 ```
 
-*(This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port. It will use `PORT` if that environment variable is set (it is automatically on Heroku) or else fall back to 8080.)*
+*(This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port.)*
 
 Make your main application (e.g. `lib/hello_world.ex`) look something like:
 
@@ -57,6 +57,17 @@ Now you should be able to start the app in a terminal with:
     mix run --no-halt
 
 It outputs the URL at which the server runs. Go there and marvel!
+
+
+## Port number
+
+If the environment variable `PORT` is set, that port number will be used.
+
+This is the convention on e.g. [Heroku](https://heroku.com) and with [Dokku](http://dokku.viewdocs.io/dokku/), meaning things will Just Work™ if you deploy there.
+
+The default is port 8080. To run on another port in development:
+
+    PORT=8181 mix run --no-halt
 
 
 ## Credits and license
