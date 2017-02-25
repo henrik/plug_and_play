@@ -23,7 +23,7 @@ def deps do
 end
 ```
 
-*This makes `PlugAndPlay` conveniences available and saves you from manually depending on the [Cowboy](https://github.com/ninenines/cowboy) web server.)*
+*(This makes `PlugAndPlay` conveniences available and saves you from manually depending on the [Cowboy](https://github.com/ninenines/cowboy) web server.)*
 
 Make your main application (e.g. `lib/hello_world/application.ex`) look something like:
 
@@ -33,7 +33,7 @@ defmodule HelloWorld.Application do
 end
 ```
 
-*This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port. It will use `PORT` if that environment variable is set (it is automatically on Heroku) or else fall back to 8080.*
+*(This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port. It will use `PORT` if that environment variable is set (it is automatically on Heroku) or else fall back to 8080.)*
 
 Make your main application (e.g. `lib/hello_world.ex`) look something like:
 
@@ -49,7 +49,7 @@ defmodule HelloWorld do
 end
 ```
 
-*This saves you from manually including some `Plug.Router` boilerplate.*
+*(This saves you from manually including some `Plug.Router` boilerplate.)*
 
 Now you should be able to start the app in a terminal with:
 
