@@ -72,6 +72,31 @@ The default is port 8080. To run on another port in development:
     PORT=8181 mix server
 
 
+## Custom supervision
+
+By default, `PlugAndPlay` defines a supervision tree for you so you don't have to. If that's all you need, ignore this section.
+
+If you want more control, you can define your own supervision tree with `PlugAndPlay.Supervisor` as one of its children.
+
+Make your main application (e.g. `lib/hello_world/application.ex`) look something like:
+
+```elixir
+defmodule HelloWorld.Application do
+  use Application
+  import Supervisor.Spec
+
+  def start(_type, _args) do
+    children = [
+      supervisor(PlugAndPlay.Supervisor, [HelloWorld.Router]),
+      # Add whatever you like here.
+    ]
+
+    Supervisor.start_link(children, strategy: :one_for_one)
+  end
+end
+```
+
+
 ## Credits and license
 
 By [Henrik Nyh](https://henrik.nyh.se) 2017-02-25 under the MIT License.
