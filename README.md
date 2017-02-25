@@ -45,6 +45,10 @@ defmodule HelloWorld do
     get "/" do
       send_resp conn, 200, "Hello world!"
     end
+
+    match _ do
+      send_resp conn, 404, "404!"
+    end
   end
 end
 ```
