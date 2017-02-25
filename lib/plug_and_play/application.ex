@@ -14,7 +14,7 @@ defmodule PlugAndPlay.Application do
 
         {:ok, pid} = Supervisor.start_link(children, strategy: :one_for_one)
 
-        IO.puts "Started server: http://0.0.0.0:#{port}"
+        IO.puts "PlugAndPlay started server: http://0.0.0.0:#{port}"
 
         {:ok, pid}
       end
