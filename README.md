@@ -79,7 +79,7 @@ Or you can configure a port in your application (typically in `config/config.exs
 config :hello_world, port: 1234
 ```
 
-Application configuration wins over an environment variable if both are set.
+Application configuration wins over the environment variable if both are set.
 
 
 ## Custom supervision
