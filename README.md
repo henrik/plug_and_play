@@ -25,19 +25,7 @@ end
 
 *(This makes `PlugAndPlay` conveniences available and saves you from manually adding Plug and the [Cowboy](https://github.com/ninenines/cowboy) web server to the deps list.)*
 
-Make your main application (e.g. `lib/hello_world/application.ex`) look something like:
-
-```elixir
-defmodule HelloWorld.Application do
-  use PlugAndPlay.Application, mod: HelloWorld
-end
-```
-
-The `mod` will be used to determine your router (assumed to be `HelloWorld.Router`) and any configuration (assumed to be for `:hello_world`).
-
-*(This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port.)*
-
-Make your main application (e.g. `lib/hello_world.ex`) look something like:
+Make your root module (e.g. `lib/hello_world.ex`) look something like:
 
 ```elixir
 defmodule HelloWorld do
@@ -56,6 +44,18 @@ end
 ```
 
 *(This saves you from manually including some `Plug.Router` boilerplate.)*
+
+Make your application (e.g. `lib/hello_world/application.ex`) look something like:
+
+```elixir
+defmodule HelloWorld.Application do
+  use PlugAndPlay.Application, mod: HelloWorld
+end
+```
+
+The `mod` will be used to determine your router (assumed to be `HelloWorld.Router`) and any configuration (assumed to be for `:hello_world`).
+
+*(This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port.)*
 
 Now you should be able to start the app in a terminal with:
 
