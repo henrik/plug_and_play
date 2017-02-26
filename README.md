@@ -45,7 +45,7 @@ end
 
 *(This saves you from manually including some `Plug.Router` boilerplate.)*
 
-Make your application (e.g. `lib/hello_world/application.ex`) look something like:
+Make your application module (e.g. `lib/hello_world/application.ex`) look something like:
 
 ```elixir
 defmodule HelloWorld.Application do
