@@ -29,9 +29,11 @@ Make your main application (e.g. `lib/hello_world/application.ex`) look somethin
 
 ```elixir
 defmodule HelloWorld.Application do
-  use PlugAndPlay.Application, router: HelloWorld.Router
+  use PlugAndPlay.Application, mod: HelloWorld
 end
 ```
+
+The `mod` will be used to determine your router (assumed to be `HelloWorld.Router`) and any configuration (assumed to be for `:hello_world`).
 
 *(This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port.)*
 
@@ -67,13 +69,17 @@ It outputs the URL at which the server runs - usually <http://0.0.0.0:8080>. Go 
 
 ## Port number
 
-If the environment variable `PORT` is set, that port number will be used.
+The default port is 8080.
 
-This is the convention on e.g. [Heroku](https://heroku.com) and with [Dokku](http://dokku.viewdocs.io/dokku/), meaning things will Just Work™ if you deploy there.
+If the environment variable `PORT` is set, that port number will be used. This is the convention on e.g. [Heroku](https://heroku.com) and with [Dokku](http://dokku.viewdocs.io/dokku/), meaning things will Just Work™ if you deploy there.
 
-The default is port 8080. To run on another port in development:
+Or you can configure a port in your application (typically in `config/config.exs`):
 
-    PORT=8181 mix server
+```elixir
+config :hello_world, port: 1234
+```
+
+Application configuration wins over an environment variable if both are set.
 
 
 ## Custom supervision
@@ -91,7 +97,7 @@ defmodule HelloWorld.Application do
 
   def start(_type, _args) do
     children = [
-      supervisor(PlugAndPlay.Supervisor, [HelloWorld.Router]),
+      supervisor(PlugAndPlay.Supervisor, [HelloWorld]),
       # Add whatever you like here.
     ]
 
