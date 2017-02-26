@@ -1,10 +1,10 @@
 defmodule PlugAndPlay.Supervisor do
   use Supervisor
 
-  def start_link(app_module) do
-    router = Module.concat [app_module, "Router"]  # E.g. HelloWorld.Router
+  def start_link(root_module) do
+    router = Module.concat [root_module, "Router"]  # E.g. HelloWorld.Router
 
-    app = Application.get_application(app_module)  # E.g. :hello_world
+    app = Application.get_application(root_module)  # E.g. :hello_world
     port_in_app_config = Application.get_env(app, :port)
     port = port_in_app_config || String.to_integer(System.get_env("PORT") || "8080")
 
