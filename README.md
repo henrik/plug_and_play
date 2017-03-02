@@ -49,11 +49,9 @@ Make your application module (e.g. `lib/hello_world/application.ex`) look someth
 
 ```elixir
 defmodule HelloWorld.Application do
-  use PlugAndPlay.Application, mod: HelloWorld
+  use PlugAndPlay.Application, router: HelloWorld.Router
 end
 ```
-
-The `mod` will be used to determine your router (assumed to be `HelloWorld.Router`) and any configuration (assumed to be for `:hello_world`).
 
 *(This saves you from manually setting up a Supervisor to run your app in the Cowboy web server on the right port.)*
 
@@ -67,22 +65,35 @@ Now you should be able to start the app in a terminal with:
 It outputs the URL at which the server runs - usually <http://0.0.0.0:8080>. Go there and marvel!
 
 
-## Port number
+## Custom port number
 
 The default port is 8080.
 
 If the environment variable `PORT` is set, that port number will be used. This is the convention on e.g. [Heroku](https://heroku.com) and with [Dokku](http://dokku.viewdocs.io/dokku/), meaning things will Just Work™ if you deploy there.
 
-Or you can configure a port in your application (typically in `config/config.exs`):
+Or you can assign a port explicitly, e.g. from application config.
+
+Assuming you have config like this in `config/config.exs`:
 
 ```elixir
 config :hello_world, port: 1234
 ```
 
-Application configuration wins over the environment variable if both are set.
+You could do this in `lib/hello_world/application.ex`:
 
 
-## Customising the plug pipeline
+```elixir
+defmodule HelloWorld.Application do
+  use PlugAndPlay.Application,
+    router: HelloWorld.Router,
+    port: Application.get_env(:hello_world, :port)
+end
+```
+
+If you set up your own supervision tree, you can also [specify the port there](#custom-supervision).
+
+
+## Custom plug pipeline
 
 If you need additional plugs, skip `use PlugAndPlay.Router` and simply write out the code instead:
 
@@ -108,17 +119,26 @@ Make your main application (e.g. `lib/hello_world/application.ex`) look somethin
 ```elixir
 defmodule HelloWorld.Application do
   use Application
-  import Supervisor.Spec
 
   def start(_type, _args) do
     children = [
-      supervisor(PlugAndPlay.Supervisor, [HelloWorld]),
-      # Add whatever you like here.
+      PlugAndPlay.Supervisor.child_spec(HelloWorld.Router),
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
+```
+
+You can specify the desired port as a second argument to `child_spec`.
+
+You can specify multiple instances as long as they have different routers and ports:
+
+```elixir
+children = [
+  PlugAndPlay.Supervisor.child_spec(HelloWorld.RouterOne, 1111),
+  PlugAndPlay.Supervisor.child_spec(HelloWorld.RouterTwo, 2222),
+]
 ```
 
 
