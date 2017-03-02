@@ -82,6 +82,21 @@ config :hello_world, port: 1234
 Application configuration wins over the environment variable if both are set.
 
 
+## Customising the plug pipeline
+
+If you need additional plugs, skip `use PlugAndPlay.Router` and simply write out the code instead:
+
+```elixir
+use Plug.Router
+
+plug :match
+plug :my_custom_plug
+plug :dispatch
+```
+
+You can still use the rest of the `PlugAndPlay` conveniences, of course, even if you skip `PlugAndPlay.Router`.
+
+
 ## Custom supervision
 
 By default, `PlugAndPlay` defines a supervision tree for you so you don't have to. If that's all you need, ignore this section.
