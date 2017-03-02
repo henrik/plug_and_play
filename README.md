@@ -1,4 +1,4 @@
-# PlugAndPlay
+# PlugAndPlay 🔌►
 
 Set up a `Plug` application with less boilerplate.
 
