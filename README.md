@@ -18,7 +18,7 @@ Open `mix.exs` and add `plug_and_play` to your list of dependencies:
 ```elixir
 def deps do
   [
-    {:plug_and_play, "~> 0.6.0"},
+    {:plug_and_play, "~> 0.7.0"},
   ]
 end
 ```
