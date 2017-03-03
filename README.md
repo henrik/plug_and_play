@@ -1,5 +1,7 @@
 # PlugAndPlay 🔌►
 
+[![Build Status](https://secure.travis-ci.org/henrik/plug_and_play.svg?branch=master "Build Status")](https://travis-ci.org/henrik/plug_and_play)
+
 Set up a `Plug` application with less boilerplate.
 
 `PlugAndPlay` is not a web framework – it's a small scaffold. You use `Plug` as you would normally, only *sooner*.
