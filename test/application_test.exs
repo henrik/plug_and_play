@@ -18,7 +18,7 @@ defmodule PlugAndPlay.ApplicationTest do
       port: 8383
   end
 
-  defmodule TestApplicationOnDefaultPort do
+  defmodule TestApplicationOnImplicitPort do
     use PlugAndPlay.Application,
       router: TestRouter
   end
@@ -30,10 +30,9 @@ defmodule PlugAndPlay.ApplicationTest do
   end
 
   test "does not require an explicit port to be specified" do
-    System.put_env("PORT", "8484")
-    start_app TestApplicationOnDefaultPort
+    start_app TestApplicationOnImplicitPort
 
-    assert http_get("http://0.0.0.0:8484/hello") == "Hello world!"
+    assert http_get("http://0.0.0.0:8080/hello") == "Hello world!"
   end
 
   defp start_app(module) do
