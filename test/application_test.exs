@@ -12,18 +12,34 @@ defmodule PlugAndPlay.ApplicationTest do
     end
   end
 
-  defmodule TestApplication do
+  defmodule TestApplicationOnExplicitPort do
     use PlugAndPlay.Application,
       router: TestRouter,
       port: 8383
   end
 
+  defmodule TestApplicationOnDefaultPort do
+    use PlugAndPlay.Application,
+      router: TestRouter
+  end
+
   test "starts an app with the given router and port" do
-    capture_io fn ->
-      {:ok, _pid} = TestApplication.start(:_type, [])
-    end
+    start_app TestApplicationOnExplicitPort
 
     assert http_get("http://0.0.0.0:8383/hello") == "Hello world!"
+  end
+
+  test "does not require an explicit port to be specified" do
+    System.put_env("PORT", "8484")
+    start_app TestApplicationOnDefaultPort
+
+    assert http_get("http://0.0.0.0:8484/hello") == "Hello world!"
+  end
+
+  defp start_app(module) do
+    capture_io fn ->
+      {:ok, _pid} = module.start(:_type, [])
+    end
   end
 
   defp http_get(url) do
