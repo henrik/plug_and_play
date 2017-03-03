@@ -23,8 +23,11 @@ defmodule PlugAndPlay.Supervisor do
   end
 
   def init([router, port]) do
+    # The Cowboy default reference is `<router>.HTTP` which prevents running the same router multiple times on different ports.
+    ref = "PlugAndPlay.#{port}"
+
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, router, [], port: port),
+      Plug.Adapters.Cowboy.child_spec(:http, router, [], port: port, ref: ref),
     ]
 
     supervise(children, strategy: :one_for_one)
