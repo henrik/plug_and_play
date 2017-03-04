@@ -1,6 +1,6 @@
 # PlugAndPlay 🔌►
 
-[![Build Status](https://secure.travis-ci.org/henrik/plug_and_play.svg?branch=master "Build Status")](https://travis-ci.org/henrik/plug_and_play) [![Elixir Forum](https://img.shields.io/badge/discuss-Elixir%20Forum-e2cbea.svg)](https://elixirforum.com/t/plugandplay-set-up-plug-apps-with-less-boilerplate/3851)
+[![Build Status](https://secure.travis-ci.org/henrik/plug_and_play.svg?branch=master "Build Status")](https://travis-ci.org/henrik/plug_and_play) [![Elixir Forum](https://img.shields.io/badge/discuss-Elixir%20Forum-b36ccc.svg)](https://elixirforum.com/t/plugandplay-set-up-plug-apps-with-less-boilerplate/3851)
 
 Set up a `Plug` application with less boilerplate.
 
