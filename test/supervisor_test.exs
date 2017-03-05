@@ -1,5 +1,5 @@
 defmodule PlugAndPlay.SupervisorTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
   import ExUnit.CaptureIO
 
   doctest PlugAndPlay.Application
